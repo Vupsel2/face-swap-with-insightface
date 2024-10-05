@@ -14,24 +14,18 @@ app.prepare(ctx_id=0, det_size=(640, 640))
 
 image_path = '6.jpg'
 img = cv2.imread(image_path)
-# Конвертируем из одного пространства цветов в другой 1 способом
+
 plt.imshow(img[:,:,::-1])
 plt.axis('off')
 
 
-# распознаем лица и записываем данные о них в переменную faces
 faces = app.get(img)
-# картинку на базе оригинальной, но с отрисованными областями на месте распознания лиц
 rimg = app.draw_on(img, faces)
-# сохраняем картинкуdeprecations
 cv2.imwrite("./t1_output.jpg", rimg)
 
 img_r = cv2.imread('t1_output.jpg')
-# Конвертируем из одного пространства цветов в другой 2 способом
 img2 = cv2.cvtColor(img_r, cv2.COLOR_BGR2RGB) 
-# отключаем отображение осей
 plt.axis('off')
-# отображаем график
 plt.imshow(img2)
 
 print(len(faces))
